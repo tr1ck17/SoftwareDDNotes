@@ -1,0 +1,164 @@
+Software Engineering:
+	Two key phrases
+		Engineering Discipline
+		All aspects of software production
+
+	Necessary product characteristics:
+		Acceptability
+		Dependability and security
+		Efficiency
+		Maintainability
+
+	SE important for two reasons:
+		individuals and society rely on advanced software systems, we need to be able to produce reliable and trustworthy systems economically and quickly
+		it's usually cheaper to use swe methods and techniques for professional software systems rather than just write programs as a personal programming projects
+
+	Four fundamental activities common to all software processes
+		software specification
+		software development
+		software validation
+		software evolution
+
+	Four related issues that affect many different types of software:
+		heterogeneity
+		business and social change
+		security and trust
+		scale software
+
+	Many different types of application
+		stand-alone applications
+		interactive transaction-based applications
+		embedded control systems
+		batch processing systems
+		entertainment systems
+		systems for modeling and simulation
+		data collection and analysis systems
+		system of systems
+
+		boundaries between these system types are blurred
+		Ex: if you develop a game for a phone, you take into account the same constraints (power, hardware interaction) as the devs of the phone software
+
+		each system type requires specialized software engineering techniques because software has different characteristics
+		Ex: embedded control system in an automobile is safety-critical and is burned into ROM when installed in vehicle
+
+	
+	Software engineering fundamentals that apply to all types of software systems:
+		
+		should be developed using a managed and understood development process. The organization developing the software should plan the development process and have clear ideas of what will be produced and when completed (specific process depends on type of software being developed)
+
+		dependability and performance always important, should behave as expected, w/o failures, available when required. safe in operation, secure against attack. efficient, no waste of resources
+
+		understand and manage software spec. and requirements. know different customers and use expectations
+
+		effective use of existing resources, i.e. reuse software that's been developed instead of writing new software
+
+	Web now used extensively, with cloud-based software and applications dominating the market
+	This had led to major effects on swe for web-based systems:
+		software reused is dominant approach for web-based systems
+		impractical to specify all requirements for systems in advance; web-based systems are always developed and delivered incrementally
+		software may be implemented using service-oriented swe, where software components are stand=-alone web services
+		interface dev tech such as AJAX ad HTML5 have emerged that support creation of rich interfaces within a web browser
+
+	Standards of acceptable behavior:
+		confidentiality
+		competence
+		intellectual property rights
+		computer misuse
+
+	NO absolutes when it comes to safety
+	ethical issues always exist
+	when collaborating, make views known in advance
+	
+	examples of system types:
+		embedded system
+			system where software controls hardware device that's embedded in that device
+			issues in emb. systems include physical size, responsiveness, power management.
+			ex: insulin pump for ppl with diabetes
+		information system
+			purpose to manage and provide access to database of info. issues include security, usability, privacy, maintaining data integrity
+			ex: medical records system
+		sensor-based data collection system
+			collect data from a set of sensors and to process data in some way. requirements are reliability and maintainability, even in hostile environment/conditions
+			ex: wilderness weather station
+		support environment
+			integrated collection of software tools used to support some activity
+			programming environments
+			ex: digital learning env to support students learning in school
+
+Insulin pump control system:
+	medical system that simulates operation of the pancreas
+	software controlling this is: embedded system: that collects info from sensor and controls a pump that delivers a controlled dose of insulin to user
+	problem: level of insulin does not just depend on blood glucose level but also on time of last insulin injection. irregular checking can lead to low levels of blood glucose
+
+Insulin Pump Hardware Architecture
+						Insulin reservoir
+		Needle assembly ------------->	    Pump			Clock
+									  ------|
+									  |
+								<----------
+		Sensor----------------------->	   Controller	----------->	Alarm
+							|
+							|
+					---------------------------
+					|			   |
+				    Display1			Display2
+						Power Supply
+
+
+Activity model of the insulin pump
+{}---->Blood sensor------->Analyze sensor reading------>blood sugar----->compute insulin<----insulin log
+										|		|
+										|		|
+									 Insulin Dose           |
+										|		|
+										|		|
+									-----------------	|
+								       |	         |	|
+{{}}<---Insulin pump<----Control insulin pump<---pump data<---compute pump commands	  Log dose
+
+
+	Software controlled insulin delivery system uses a microsensor embedded in the patient to measure some blood parameter that is proportional to the sugar level, which is then sent to the pump controller. This controller computes the sugar level and the amount of insulin needed, then sends signal to a miniaturized pump to deliver the insulin via a permanently attached needle
+	
+Organization of the Mentcare system
+		Mentcare client			Mentcare client			Mentcare Client
+			|				|				|
+			|				|				|
+			----------------------------Network------------------------------
+							|
+							|
+							|
+						 Mentcare Server
+						|		|
+						|		|
+						 Patient Database
+
+	The pump delivers one unit of insulin in response to a single pulse from a controller. Therefore, to deliver 10 units of insulin, controller sends 10 pulses to the pump
+	Diagram "Activity model of the insulin pump" is a Unified Modeling Language (UML) that illustrates how software transforms an input blood sugar level to a sequence of commands that drive the insulin pump
+	This is a safety-critical system
+	System must meet two essential high-level requirements:
+		System shall be available to deliver insulin when required
+		System shall perform reliably and deliver the correct amount of insulin to counteract the current level of blood sugar
+	So, system must be designed and implemented to ensure it always meets above requirements
+
+Patient Information System for Mental Health Care
+	Ex name: Mentcare
+	A patient information system that is intended for use in clinics; makes use of centralized database of patient information but has also been designed to run on a laptop, may be accessed wand used from sites that do not have secure network connectivity
+	When local systems have secure net access, they use patient info in database, but can download and use local copies of patient records when they are disconnected
+	Is not complete medical records system and does not maintain info about other medical conditions
+	May interact and exchange data with other clinical info systems
+	This system has two purposes:
+		Generate management info that allows health service managers to assess performance against local and government targets
+		provide medical staff with timely info to support the treatment of patients
+	Key features of system:
+		individual care management:
+			clinicians can create records for patients, edit info in system, view patient history.
+			system supports data summaries so doctors can quickly learn about key problems and treatments that have no been prescribed
+		patient monitoring:
+			system regularly monitors records of patients that are involved in treatment, and issues warnings if possible problems detected, so if patient has not seen doctor for a time, warning may be issued. one of most important elements of monitoring system is keep track of patients who have been sectioned and to ensure the legally required checks are carried out at right time
+		administrative reporting:
+			system generates monthly management reports showing number of patients treated at each clinic, number of patients who've entered and left care system, number of patients sectioned, drugs prescribed and their cost, etc.
+
+2 different laws affect system:
+	laws on data protection that govern confidentiality of personal info
+	mental health laws that govern the compulsory detention of patients deemed to be a danger to themself or others
+
