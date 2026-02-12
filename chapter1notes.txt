@@ -161,4 +161,67 @@ Patient Information System for Mental Health Care
 2 different laws affect system:
 	laws on data protection that govern confidentiality of personal info
 	mental health laws that govern the compulsory detention of patients deemed to be a danger to themself or others
+	
+	Privacy is very critical
+	Privacy is easiest to maintain when there's only a single copy of the system data.
+	However, to ensure availability in the event of server failure or disconnection from network, multiple copies of the data should be maintained
 
+	
+A Wilderness Weather Station
+	Help monitor and improve accuracy of weather forecasts in remote areas, the government of the country decides to deploy several hundred weather stations in remote areas. These stations collect data from a set of instruments that measure temperature and pressure, sunshine, rainfall, wind speed and direction
+
+	Systems:
+		Weather Station System:
+			This system is responsible for collecting weather data, carrying out some initial data processing, and transmitting it to the data management system
+		Data Management and Archiving System
+			This system collects the data from all of the wilderness weather stations, carries out data processing and analysis, and archives the data in a form that can be retrieved by other systems, such as weather forecasting systems
+		Station Maintenance System
+			This system can communicate by satellite with all wilderness stations to monitor the health of these systems and provide reports of problems, this system can also be used to remotely control the weather station
+
+Weather Station Environment
+	<<system>>				<<system>>
+      Weather Station	----------------  Data Management and Archiving
+	    |
+	    |
+	    |
+	<<system>>
+     System Maintenance
+
+	UML package symbol to indicate that each system is a collection of components and the separate systems are identified using the UML stereotype <<system>>
+	Each station is battery-powered and must be entirely self-contained; no external power or network cables. All communications are through a relatively slow satellite link, and station must include some mechanism (solar or wind power) to charge its batteries.
+	Station software must not be concerned only with data collection, but must also:
+		Monitor the instruments, power, and communication hardware and report faults to the management system
+		Manage the system power, ensuring that batteries are charged whenever the environmental conditions permit but also that generators are shut down in potentially damaging weather conditions, such as high wind
+		Allow for dynamic reconfig where parts of the software are replaced with new versions and where backup instruments are switched into the system in the event of system failure
+
+
+Digital Learning Environment for Schools
+	Three types of service in this system:
+		Utility Services
+			provide basic application-independent functionality and that may be used by other services in the system. Utility services are usually developed or adapted specifically for this system
+		Application Services
+			provide specific applications such as email, conferencing, photo sharing, etc, and access to specific educational content such as scientific films or historical resources. app services are external services that are either specifically purchased for the system or are available freely over the internet
+		Configuration Services
+			used to adapt the environment with a specific set of application services and to define how services are shared between students, teachers, and their parents
+
+The architecture of a digital learning environment (iLearn)
+
+Brower-based user interface		iLearn app
+
+Configuration Services
+Group management	Application Management		Identity Management
+
+Application Services
+Email	Messaging	Video Conferencing	Newspaper archive
+Word processing		Simulation	Video Storage	Resource finder
+Spreadsheet	Virtual Learning environment	History archive
+
+Utility Services
+Authentication		Logging and monitoring		Interfacing
+User Storage		Application Storage		Search
+
+This environment is designed so that services can be replaced as new services become available and to provide different versions of the system that are suited for the age of the users. This means that the system has to support two levels of service integration:
+	Integrated Services
+		are services that offer an API (application programming interface) and that can be accessed by other services through that API. Direct service-to-service communication is therefore possible. An authentication service is an example of an integrated service. authentication service can be called on by other services to authenticate users. If users are already authenticated, then the authentication service may pass authentication info directly to another service, via an API, with no need for users to reauthenticate themselves
+	Independent Services
+		services that are accessed through a browser interface and that operate independently of other services. Info can only be shared with other services through explicit user actions such as copy and paste; reauth may be required for each independent service
